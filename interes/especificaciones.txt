@@ -1,0 +1,8 @@
+Especificaciones
+
+- La logica debe calcular interés aplicado sobre una deuda de capital
+  y a partir de la fecha de vencimiento de ese capital y hasta una 
+  fecha dada.
+  
+- La tasa de interes puede ser viariable en el tiempo, es decir, la 
+  tasa para cierto periodo es de 1%, luego de 2%, luego de 1.5%, etc.
