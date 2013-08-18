@@ -9,4 +9,9 @@ describe Liquidador do
     liquidador.interes(100, Date.today, Date.today).should == 0
   end
 
+  it 'debería calcular 2 pesos de interés para un día despues del vencimiento' do
+    liquidador = Liquidador.new(1)
+    liquidador.interes(200, Date.today-1, Date.today).should == 2
+  end
+
 end
