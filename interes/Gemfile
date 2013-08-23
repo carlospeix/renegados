@@ -6,3 +6,4 @@ if RUBY_VERSION =~ /1.9/
 end
 
 gem 'rspec'
+gem 'debugger'
