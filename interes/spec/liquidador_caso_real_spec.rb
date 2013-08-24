@@ -18,7 +18,7 @@ describe Liquidador do
     @liquidador = Liquidador.new(tasas_interes_combinadas)
   end
 
-  it 'debería calcular ' do
+  it 'debería calcular interes combinando varias tasas' do
     @liquidador.interes(1000, Date.new(2000, 1, 1), Date.new(2013, 1, 3)).should == 142530
   end
 
