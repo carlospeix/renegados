@@ -21,7 +21,7 @@ describe Liquidador do
     @liquidador.interes(200, Date.new(2000, 1, 1), Date.new(2000, 1, 2)).should == 4
   end
 
-  it 'debería calcular 6 pesos de interés, 4 para el primer día y 4 para el segundo despues del vencimiento' do
+  it 'debería calcular 6 pesos de interés, 4 para el primer día y 2 para el segundo despues del vencimiento' do
     @liquidador.interes(200, Date.new(2000, 1, 1), Date.new(2000, 1, 3)).should == 6
   end
 
