@@ -14,12 +14,12 @@ describe Liquidador do
       [ Date.new(2002, 1, 1), Date.new(2003, 1, 31), 4 ],
       [ Date.new(1998, 1, 1), Date.new(2002, 6, 10), 3 ],
       [ Date.new(1998, 1, 1), Date.new(1998, 9, 30), 2 ]
-    ]
+    ].reverse
     @liquidador = Liquidador.new(tasas_interes_combinadas)
   end
 
   it 'debería calcular interes combinando varias tasas' do
-    @liquidador.interes(1000, Date.new(2000, 1, 1), Date.new(2013, 1, 3)).should == 142530
+    @liquidador.interes(1000, Date.new(2000, 1, 1), Date.new(2013, 1, 3)).should == 117490
   end
 
 end

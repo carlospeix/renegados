@@ -1,38 +1,24 @@
+require File.join(File.dirname(__FILE__),'../model/interes_en_rango_de_fecha')
+require File.join(File.dirname(__FILE__),'../model/rango_de_fecha')
+
 class Liquidador
   def initialize(tasas_de_interes_diario)
-    @tasas_de_interes_diario = tasas_de_interes_diario
+    @tasas_de_interes_diario = tasas_de_interes_diario.collect { |array|
+      InteresEnRangoDeFecha.new(array[0].to(array[1]),array[2]) }
   end
 
-  def interes(capital, fecha_vencimiento, fecha_liquidacion)
-    interes = 0
+  def interes(capital, fecha_de_inicio, fecha_liquidacion)
+    rango_de_deuda = (fecha_de_inicio+1).to(fecha_liquidacion)
 
-    totalizador = Proc.new do |dias, tasa|
-      interes = interes + capital * dias * tasa / 100
-    end
-
-    tasa_de_interes_segmentada(fecha_vencimiento, fecha_liquidacion, totalizador)
-
-    return interes
+    interes_acumulado = 0
+    intereses_por_rango_para(rango_de_deuda).each { |interes_de_rango |
+      interes_acumulado = interes_acumulado + capital * interes_de_rango / 100 }
+    interes_acumulado
   end
 
-private
-  def tasa_de_interes_segmentada(fecha_vencimiento, fecha_liquidacion, block)
-    desde = fecha_vencimiento
-    @tasas_de_interes_diario.each { |periodo_tasa|
-      if desde <= fecha_liquidacion
-        if desde <= periodo_tasa[1] # Si caigo en este periodo
-          if fecha_liquidacion <= periodo_tasa[1]
-            dias = (fecha_liquidacion - desde).to_i
-            block.call(dias, periodo_tasa[2])
-            desde = fecha_liquidacion + 1
-          else
-            dias = (periodo_tasa[1] - desde).to_i
-            block.call(dias, periodo_tasa[2])
-            desde = periodo_tasa[1]
-          end
-        end
-      end
-    }
+  def intereses_por_rango_para(rango_de_deuda)
+    @tasas_de_interes_diario.collect { |interes_por_rango|
+      interes_por_rango.interes_para(rango_de_deuda) }
   end
 
 end

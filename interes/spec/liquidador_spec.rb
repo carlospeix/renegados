@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-require 'debugger'
 require File.join(File.dirname(__FILE__),'../model/liquidador')
 
 describe Liquidador do
