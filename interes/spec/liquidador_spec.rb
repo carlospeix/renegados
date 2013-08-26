@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require 'debugger'
 require File.join(File.dirname(__FILE__),'../model/liquidador')
+require File.join(File.dirname(__FILE__),'../model/day_count_basis')
 
 describe Liquidador do
 
@@ -10,7 +10,7 @@ describe Liquidador do
       [ Date.new(2000, 1, 1), Date.new(2000, 1, 2), 2 ],
       [ Date.new(2000, 1, 3), Date.new(2000, 1, 4), 1 ]
     ]
-    @liquidador = Liquidador.new(tasas_interes)
+    @liquidador = Liquidador.new(tasas_interes, ActualActual.new)
   end
 
   it 'debería calcular cero interés con capital no vencido' do

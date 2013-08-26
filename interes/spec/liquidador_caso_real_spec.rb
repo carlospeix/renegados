@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require File.join(File.dirname(__FILE__),'../model/liquidador')
+require File.join(File.dirname(__FILE__),'../model/day_count_basis')
 
 describe Liquidador do
 
@@ -15,7 +16,7 @@ describe Liquidador do
       [ Date.new(2006, 7, 1), Date.new(2010, 12, 31), 2 ],
       [ Date.new(2011, 1, 1), Date.new(9999, 12, 31), 3 ]
     ]
-    @liquidador = Liquidador.new(tasas_interes_combinadas)
+    @liquidador = Liquidador.new(tasas_interes_combinadas,ActualActual.new)
   end
 
   it 'debería calcular interes combinando varias tasas' do
