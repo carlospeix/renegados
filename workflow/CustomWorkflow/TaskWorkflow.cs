@@ -51,9 +51,8 @@ namespace CustomWorkflows
 		{
 			if (asyncMode)
 			{
-				var eventTask = new EventTask(task, actionName, instanceId, parameters);
 				if (_queueManager == null)
-					lock (eventTask)
+					lock (this)
 					{
 						if (_queueManager == null)
 						{
@@ -62,6 +61,7 @@ namespace CustomWorkflows
 						}
 					}
 
+				var eventTask = new EventTask(task, actionName, instanceId, parameters);
 				_queueManager.Add(eventTask);
 
 			}

@@ -109,7 +109,7 @@ namespace CustomWorkflowsTest
 		}
 
 		[Test]
-		public void AccionAsincronica()
+		public void AsincronicoUnaAccion()
 		{
 			string taskName = null;
 			_workflow.AsyncMode = true;
@@ -124,13 +124,13 @@ namespace CustomWorkflowsTest
 			                                                                                   	{
 			                                                                                   		{ "saltearCT", true }
 			                                                                                   	});
+			System.Threading.Thread.Sleep(100);
 
-			_workflow.TerminarProcesarCola();
 			Assert.AreEqual("EnviarMail", taskName);
 		}
 
 		[Test]
-		public void DosAccionesAsincronicasEnSerie()
+		public void AsincronicoDosAccionesEnSerie()
 		{
 			var taskName = new List<string>();
 			_workflow.AsyncMode = true;
@@ -149,14 +149,14 @@ namespace CustomWorkflowsTest
 			                                                                                   		{ "saltearCT", false }
 			                                                                                   	});
 
-			_workflow.TerminarProcesarCola();
+			System.Threading.Thread.Sleep(100);
 
 			Assert.AreEqual("CargarTitulo", taskName[0]);
 			Assert.AreEqual("EnviarMail", taskName[1]);
 		}
 
 		[Test]
-		public void UnaAccionSincronicaYOtraAsincronica()
+		public void AsincronicoUnaAccionSincronicaYOtraAsincronica()
 		{
 			var taskName = new List<string>();
 			_workflow.OnNewTask += (sender, e) =>
@@ -174,14 +174,14 @@ namespace CustomWorkflowsTest
 			                                                                                   		{ "saltearCT", false }
 			                                                                                   	}, false);
 
-			_workflow.TerminarProcesarCola();
+			System.Threading.Thread.Sleep(100);
 
 			Assert.AreEqual("CargarTitulo", taskName[0]);
 			Assert.AreEqual("EnviarMail", taskName[1]);
 		}
 
 		[Test]
-		public void DosAccionesAsincronicasEnSerieDesdeThreadPrincipal()
+		public void AsincronicoDosAccionesAsincronicasEnSerieDesdeThreadPrincipal()
 		{
 			_workflow.AsyncMode = true;
 			_workflow.OnNewTask += (sender, e) =>
@@ -195,17 +195,19 @@ namespace CustomWorkflowsTest
 			                                                                                   		{ "saltearCT", false }
 			                                                                                   	});
 
-			_workflow.TerminarProcesarCola();
+			System.Threading.Thread.Sleep(100);
+
 			Assert.AreEqual("CargarTitulo", _instancia.TareaActual);
 
 			_workflow.DispatchTask(_instancia.TareaActual, "Aceptar", _instancia.InstanceId, new Dictionary<string, object>());
 
-			_workflow.TerminarProcesarCola();
+			System.Threading.Thread.Sleep(100);
+
 			Assert.AreEqual("EnviarMail", _instancia.TareaActual);
 		}
 
 		[Test]
-		public void AccionAsincronicaQueTardeEnActualizarYConTransactionScopeRolledBack()
+		public void AsincronicoAccionAsincronicaQueTardeEnActualizarYConTransactionScopeRolledBack()
 		{
 			_workflow.AsyncMode = true;
 			_workflow.OnNewTask += (sender, e) =>
@@ -221,7 +223,7 @@ namespace CustomWorkflowsTest
 				                                                                                   	});
 			}
 
-			_workflow.TerminarProcesarCola();
+			System.Threading.Thread.Sleep(100);
 
 			Assert.AreEqual("Procesando", _instancia.TareaActual);
 		}

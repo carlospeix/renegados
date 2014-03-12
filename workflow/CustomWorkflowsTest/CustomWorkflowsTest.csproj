@@ -47,7 +47,6 @@
     <Compile Include="MailWorkflowTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticQueueManagerTest.cs" />
-    <Compile Include="Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomWorkflow\CustomWorkflows.csproj">

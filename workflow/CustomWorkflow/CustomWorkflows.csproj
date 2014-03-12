@@ -42,9 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\ExampleTaskWorkflow.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="FlowControlTaskWorkflow.cs" />
     <Compile Include="Examples\MailWorkflow.cs" />
     <Compile Include="QueueManager.cs" />
