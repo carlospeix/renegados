@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomWorkflows", "CustomWorkflow\CustomWorkflows.csproj", "{1B871974-9C16-4938-B093-5DF96693B066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomWorkflowsTest", "CustomWorkflowsTest\CustomWorkflowsTest.csproj", "{B056CC76-13BA-4B9D-AA10-0BE75BC96C30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{249D869F-99FB-4BCC-A0D0-EE15DD91C5CB}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B871974-9C16-4938-B093-5DF96693B066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B871974-9C16-4938-B093-5DF96693B066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B871974-9C16-4938-B093-5DF96693B066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B871974-9C16-4938-B093-5DF96693B066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B056CC76-13BA-4B9D-AA10-0BE75BC96C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B056CC76-13BA-4B9D-AA10-0BE75BC96C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B056CC76-13BA-4B9D-AA10-0BE75BC96C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B056CC76-13BA-4B9D-AA10-0BE75BC96C30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
