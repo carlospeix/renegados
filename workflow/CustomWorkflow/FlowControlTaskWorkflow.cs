@@ -5,6 +5,11 @@ namespace CustomWorkflows
 {
 	public abstract class FlowControlTaskWorkflow : TaskWorkflow
 	{
+		protected FlowControlTaskWorkflow(QueueManager queueManager, Consumer consumer)
+			: base(queueManager, consumer)
+		{
+		}
+
 		protected override void ExecuteTask(Task task, string actionName, Guid instanceId, Dictionary<string, object> parameters)
 		{
 			if (!parameters.ContainsKey(task.Name))

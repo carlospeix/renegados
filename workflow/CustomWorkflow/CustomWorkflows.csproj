@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consumer.cs" />
     <Compile Include="FlowControlTaskWorkflow.cs" />
     <Compile Include="Examples\MailWorkflow.cs" />
     <Compile Include="QueueManager.cs" />

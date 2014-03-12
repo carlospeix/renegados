@@ -6,7 +6,7 @@ namespace CustomWorkflowsTest
 	[TestFixture]
 	public class TestStaticQueueManager
 	{
-		StaticQueueManager _queueManager;
+		QueueManager _queueManager;
 
 		[SetUp]
 		public void Setup()

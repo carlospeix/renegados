@@ -13,7 +13,8 @@ namespace CustomWorkflows
         public Task RevisarTexto { get; set; }
         public Task Rechazada { get; set; }
 
-        public MailWorkflow()
+				public MailWorkflow(QueueManager queueManager, Consumer consumer)
+					: base(queueManager, consumer)
         {
             Inicio.Actions.Add(new Action("Aceptar", (env) =>
             {

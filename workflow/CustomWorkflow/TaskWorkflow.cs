@@ -12,10 +12,15 @@ namespace CustomWorkflows
 		public event EventHandler<NewTaskEventArgs> OnNewTask;
 		public string Descripcion = "Task Workflow";
 		public bool Verbose { get; set; }
-		StaticQueueManager _queueManager;
+		QueueManager _queueManager;
+		private readonly Consumer _consumer;
 
-		protected TaskWorkflow()
+		protected TaskWorkflow(QueueManager queueManager, Consumer consumer)
 		{
+			_queueManager = queueManager;
+			_consumer = consumer;
+			_consumer.OnItemAvailable += DoProcessItem;
+
 			Tasks = new List<Task>();
 			var properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 			foreach (var property in properties)
@@ -51,19 +56,8 @@ namespace CustomWorkflows
 		{
 			if (asyncMode)
 			{
-				if (_queueManager == null)
-					lock (this)
-					{
-						if (_queueManager == null)
-						{
-							_queueManager = new StaticQueueManager(GetType().FullName);
-							_queueManager.OnItemAvailable += DoProcessItem;
-						}
-					}
-
 				var eventTask = new EventTask(task, actionName, instanceId, parameters);
 				_queueManager.Add(eventTask);
-
 			}
 			else
 				ExecuteTask(task, actionName, instanceId, parameters);

@@ -19,11 +19,15 @@ namespace CustomWorkflowsTest
 	{
 		MailWorkflow _workflow;
 		InstanciaMail _instancia;
+		private QueueManager _queueManager;
+		Consumer _consumer;
 
 		[SetUp]
 		public void Setup()
 		{
-			_workflow = new MailWorkflow();
+			_queueManager = new StaticQueueManager(GetType().FullName);
+			_consumer = new Consumer(_queueManager);
+			_workflow = new MailWorkflow(_queueManager, _consumer);
 			_instancia = new InstanciaMail
 			             	{
 			             		InstanceId = Guid.NewGuid(), 
@@ -124,7 +128,7 @@ namespace CustomWorkflowsTest
 			                                                                                   	{
 			                                                                                   		{ "saltearCT", true }
 			                                                                                   	});
-			System.Threading.Thread.Sleep(100);
+			_consumer.TerminarProcesarCola();
 
 			Assert.AreEqual("EnviarMail", taskName);
 		}
@@ -149,7 +153,7 @@ namespace CustomWorkflowsTest
 			                                                                                   		{ "saltearCT", false }
 			                                                                                   	});
 
-			System.Threading.Thread.Sleep(100);
+			_consumer.TerminarProcesarCola();
 
 			Assert.AreEqual("CargarTitulo", taskName[0]);
 			Assert.AreEqual("EnviarMail", taskName[1]);
@@ -174,7 +178,7 @@ namespace CustomWorkflowsTest
 			                                                                                   		{ "saltearCT", false }
 			                                                                                   	}, false);
 
-			System.Threading.Thread.Sleep(100);
+			_consumer.TerminarProcesarCola();
 
 			Assert.AreEqual("CargarTitulo", taskName[0]);
 			Assert.AreEqual("EnviarMail", taskName[1]);
@@ -195,13 +199,13 @@ namespace CustomWorkflowsTest
 			                                                                                   		{ "saltearCT", false }
 			                                                                                   	});
 
-			System.Threading.Thread.Sleep(100);
+			_consumer.TerminarProcesarCola();
 
 			Assert.AreEqual("CargarTitulo", _instancia.TareaActual);
 
 			_workflow.DispatchTask(_instancia.TareaActual, "Aceptar", _instancia.InstanceId, new Dictionary<string, object>());
 
-			System.Threading.Thread.Sleep(100);
+			_consumer.TerminarProcesarCola();
 
 			Assert.AreEqual("EnviarMail", _instancia.TareaActual);
 		}
@@ -223,7 +227,7 @@ namespace CustomWorkflowsTest
 				                                                                                   	});
 			}
 
-			System.Threading.Thread.Sleep(100);
+			_consumer.TerminarProcesarCola();
 
 			Assert.AreEqual("Procesando", _instancia.TareaActual);
 		}
