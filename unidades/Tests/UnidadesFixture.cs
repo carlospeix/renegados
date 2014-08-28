@@ -12,16 +12,16 @@ namespace Unidades.Tests
 		public void SetUp()
 		{
 			_prod = new Producto();
-			_prod.AgregarUnidad("Unidad", 1);
-			_prod.AgregarUnidad("Caja", 10, "Unidad");
-			_prod.AgregarUnidad("Cajón", 50, "Unidad");
+			_prod.AgregarUnidad("Botella", 1);
+			_prod.AgregarUnidad("Caja", 10, "Botella");
+			_prod.AgregarUnidad("Cajón", 50, "Botella");
 			_prod.AgregarUnidad("Pallet", 125, "Caja");
 		}
 
 		[Test]
 		public void UnidadesPor1UnidadDeberiaSer1()
 		{
-			Assert.AreEqual(1, _prod.UnidadesPor("Unidad"));
+			Assert.AreEqual(1, _prod.UnidadesPor("Botella"));
 		}
 
 		[Test]

@@ -19,9 +19,17 @@ namespace Unidades.Modelo
 
 		public void AgregarUnidad(string nombreUnidad, int cantidad, string nombreUnidadRef)
 		{
+			var unidadRef = _unidades.First(u => u.Nombre == nombreUnidadRef);
+			_unidades.Add(new Unidad(nombreUnidad, cantidad, unidadRef));
 		}
 
 		public int UnidadesPor(string nombreUnidad)
+		{
+			var unidad = _unidades.First(u => u.Nombre == nombreUnidad);
+			return unidad.Cantidad;
+		}
+
+		public int UnidadesPorOld(string nombreUnidad)
 		{
 			if (_unidades.Count == 0)
 				return 0;

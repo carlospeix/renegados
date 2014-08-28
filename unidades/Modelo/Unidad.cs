@@ -6,6 +6,7 @@ namespace Unidades.Modelo
 	{
 		private readonly string _nombre;
 		private readonly int _cantidad;
+		private readonly Unidad _unidadReferencia;
 
 		public Unidad(string nombre, int cantidad)
 		{
@@ -13,16 +14,26 @@ namespace Unidades.Modelo
 			_cantidad = cantidad;
 		}
 
+		public Unidad(string nombre, int cantidad, Unidad unidadReferencia)
+		{
+			_nombre = nombre;
+			_cantidad = cantidad;
+			_unidadReferencia = unidadReferencia;
+		}
+
 		public string Nombre
 		{
 			get { return _nombre; }
 		}
 
-		public int Cantidad
+		public virtual int Cantidad
 		{
 			get
 			{
-				return _cantidad;
+				if (_unidadReferencia == null)
+					return _cantidad;
+
+				return _cantidad * _unidadReferencia.Cantidad;
 			}
 		}
 	}

@@ -21,10 +21,10 @@ namespace Unidades.Tests
 
 			_reporte = new List<dynamic>
 			           	{
-			           		new {Producto = _prod, Cantidad = 90, Unidad = "Unidad"}, // 90
-			           		new {Producto = _prod, Cantidad = 25, Unidad = "Caja"},   // 250
-			           		new {Producto = _prod, Cantidad = 15, Unidad = "Cajón"},  // 750
-			           		new {Producto = _prod, Cantidad = 10, Unidad = "Pallet"}  // 12500
+			           		new {Producto = _prod, Cantidad = 90, Presentacion = "Unidad"}, // 90
+			           		new {Producto = _prod, Cantidad = 25, Presentacion = "Caja"},   // 250
+			           		new {Producto = _prod, Cantidad = 15, Presentacion = "Cajón"},  // 750
+			           		new {Producto = _prod, Cantidad = 10, Presentacion = "Pallet"}  // 12500
 			           	};
 		}
 
@@ -32,6 +32,9 @@ namespace Unidades.Tests
 		public void ReporteDeberiaSumar()
 		{
 			var unidades = 0;
+
+			foreach (var linea in _reporte)
+				unidades += linea.Cantidad*linea.Producto.UnidadesPor(linea.Presentacion);
 
 			Assert.AreEqual(90 + 250 + 750 + 12500, unidades);
 		}

@@ -19,13 +19,13 @@ namespace Unidades.Tests
 		[Test]
 		public void UnidadesPor1UnidadDeberiaSer1()
 		{
-			Assert.AreEqual(1, _prod.UnidadesPor("Unidad"));
+			Assert.AreEqual(1, _prod.UnidadesPorOld("Unidad"));
 		}
 
 		[Test]
 		public void UnidadesPor1CajasDeberiaSer10()
 		{
-			Assert.AreEqual(10, _prod.UnidadesPor("Caja"));
+			Assert.AreEqual(10, _prod.UnidadesPorOld("Caja"));
 		}
 	}
 }
