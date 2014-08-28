@@ -12,9 +12,13 @@ namespace Unidades.Modelo
 			_unidades = new List<Unidad>();
 		}
 
-		public void AgregarUnidad(Unidad unidad)
+		public void AgregarUnidad(string nombreUnidad, int cantidad)
 		{
-			_unidades.Add(unidad);
+			_unidades.Add(new Unidad(nombreUnidad, cantidad));
+		}
+
+		public void AgregarUnidad(string nombreUnidad, int cantidad, string nombreUnidadRef)
+		{
 		}
 
 		public int UnidadesPor(string nombreUnidad)

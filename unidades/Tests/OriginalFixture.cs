@@ -4,7 +4,7 @@ using Unidades.Modelo;
 namespace Unidades.Tests
 {
 	[TestFixture]
-	public class UnidadesFixture
+	public class OriginalFixture
 	{
 		private Producto _prod;
 
@@ -13,9 +13,7 @@ namespace Unidades.Tests
 		{
 			_prod = new Producto();
 			_prod.AgregarUnidad("Unidad", 1);
-			_prod.AgregarUnidad("Caja", 10, "Unidad");
-			_prod.AgregarUnidad("Cajón", 50, "Unidad");
-			_prod.AgregarUnidad("Pallet", 125, "Caja");
+			_prod.AgregarUnidad("Caja", 10);
 		}
 
 		[Test]
@@ -29,17 +27,5 @@ namespace Unidades.Tests
 		{
 			Assert.AreEqual(10, _prod.UnidadesPor("Caja"));
 		}
-
-		[Test]
-		public void UnidadesPor1CajonDeberiaSer50()
-		{
-			Assert.AreEqual(50, _prod.UnidadesPor("Cajón"));
-		}
-
-		[Test]
-		public void UnidadesPor1PalletDeberiaSer1250()
-		{
-			Assert.AreEqual(1250, _prod.UnidadesPor("Pallet"));
-		}
-}
+	}
 }

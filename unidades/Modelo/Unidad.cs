@@ -20,7 +20,10 @@ namespace Unidades.Modelo
 
 		public int Cantidad
 		{
-			get { return _cantidad; }
+			get
+			{
+				return _cantidad;
+			}
 		}
 	}
 }
